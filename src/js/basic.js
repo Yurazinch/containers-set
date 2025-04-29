@@ -7,10 +7,10 @@ export default class Team {
     if(this.members.has(hitUnit)) {
       throw 'Юнит уже добавлен в команду';
     }
-    this.members.add(hitUnit);
+    return this.members.add(hitUnit);
   }
   addAll(...units) {
-    this.members.add(...units);
+    return this.members.add(...units);
   }
   toArray() {
     // eslint-disable-next-line no-unused-vars

@@ -8,32 +8,32 @@ const units = [
   {name: 'Мишень', health: 10}
 ]
 
-team.clear;
-
 test('add hit unit', () => {  
-  team.add(unit);
-  let received = team.size;
-  expect(received).toBe(1);
+  team.add(unit.name);
+  let received = unit.has('Маг');
+  let expected = true;
+  expect(received).toBe(expected);
 });
 
 test('add hit unit 2', () => {  
-  team.add(unit);
+  team.add(unit.name);
   // eslint-disable-next-line no-undef
   expect(thrown).toBe('Юнит уже добавлен в команду');
 });
 
 test ('add more units', () => {  
-  team.addAll(...units);
+  let names = [];
+  for(let unit of units) {
+    names.push(unit.name);
+  }
+  team.addAll(...names);
   let received = team.size;
-  expect(received).toBe(3);
+  let expected = 3;
+  expect(received).toBe(expected);
 })
 
 test ('add to array', () => {
    let received = team.toArray();
-   let expected = [
-    {name: 'Маг', health: 95},
-    {name: 'Лучник', health: 45},
-    {name: 'Мишень', health: 10}
-  ]
-  expect(received).toBe(expected);
+   let expected = [ 'Маг', 'Лучник', 'Мишень' ]
+  expect(received).toEqual(expected);
 })
