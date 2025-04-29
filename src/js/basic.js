@@ -1,13 +1,12 @@
-const hitUnit = {};
 export default class Team {
   constructor() {
-      this.members = new Set();
+    this.members = new Set();
   }
-  add() {
-    if(this.members.has(hitUnit)) {
+  add(unit) {
+    if(this.members.has(unit)) {
       throw 'Юнит уже добавлен в команду';
     }
-    return this.members.add(hitUnit);
+    return this.members.add(unit);
   }
   addAll(...units) {
     return this.members.add(...units);
