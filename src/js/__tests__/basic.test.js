@@ -10,24 +10,20 @@ const units = [
 
 test('add hit unit', () => {  
   team.add(unit.name);
-  let received = unit.has('Маг');
+  let received = team.members.has('Маг');
   let expected = true;
   expect(received).toBe(expected);
 });
 
-test('add hit unit 2', () => {  
+test('repeat add hit unit', () => { 
+  expect(() => {
   team.add(unit.name);
-  // eslint-disable-next-line no-undef
-  expect(thrown).toBe('Юнит уже добавлен в команду');
+  }).toThrow('Юнит уже добавлен в команду');
 });
 
-test ('add more units', () => {  
-  let names = [];
-  for(let unit of units) {
-    names.push(unit.name);
-  }
-  team.addAll(...names);
-  let received = team.size;
+test ('add more units', () => {
+  team.addAll(...units);
+  let received = team.members.size;
   let expected = 3;
   expect(received).toBe(expected);
 })

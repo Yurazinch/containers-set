@@ -5,16 +5,17 @@ export default class Team {
   add(unit) {
     if(this.members.has(unit)) {
       throw 'Юнит уже добавлен в команду';
+    } else {
+      return this.members.add(unit);
     }
-    return this.members.add(unit);
   }
-  addAll(...units) {
-    return this.members.add(...units);
+  addAll(...units) { 
+    for(let unit of units) {
+      this.members.add(unit.name);
+    }
+    return this.members;
   }
-  toArray() {
-    // eslint-disable-next-line no-unused-vars
-    const array = [];
-    this.members.forEach(item => array.push(item));
-    return array;
+  toArray() {    
+    return [...this.members];    
   }
 }
